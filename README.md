@@ -347,3 +347,75 @@ public void DoSomething (Base obj) {
   obj.NonVirtualFromDerived();
 }
 ```
+
+## Public und private in JavaScript
+
+- Ab EcmaScript 2022
+
+```javascript
+class Rectangle {
+  constructor (width, height) {
+    this.#width = width;
+    this.#height = height;
+  }
+
+  getArea () {
+    return this.#width * this.#height;
+  }
+
+  getCircumference () {
+    return 2 * this.#width + 2 * this.#height;
+  }
+}
+```
+
+- Vor EcmaScript 2022
+
+```javascript
+class Rectangle {
+  constructor (width, height) {
+    this._width = width;
+    this._height = height;
+  }
+
+  getArea () {
+    return this._width * this._height;
+  }
+
+  getCircumference () {
+    return 2 * this._width + 2 * this._height;
+  }
+}
+
+const createRectangle = function (width, height) {
+  const rectangle = {
+    getArea () {
+      return width * height;
+    },
+    getCircumference () {
+      return 2 * width + 2 * height;
+    }
+  };
+
+  return rectangle;
+};
+
+const rect = createRectangle(42, 7);
+const area = rect.getArea();
+```
+
+## Die SOLID-Prinzipien
+
+- Single Responsibility Principle
+- Open Closed Principle
+- Liskov Substitution Princple
+- Interface Segregation Principle
+- Dependency Inversion Principle
+
+```typescript
+function doSomething (logger: ILogger): void {
+  // ...
+
+  logger.info('Done something!');
+}
+```
